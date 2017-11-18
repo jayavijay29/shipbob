@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ShipbobModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="order">
+    <Key>
+      <PropertyRef Name="trackingID" />
+    </Key>
+    <Property Name="userID" Type="Int32" Nullable="false" />
+    <Property Name="trackingID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="orderID" Type="Int32" Nullable="false" />
+    <Property Name="street" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="state" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="zipCode" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="user" Relationship="Self.FK_order_user" FromRole="order" ToRole="user" />
+  </EntityType>
+  <EntityType Name="user">
+    <Key>
+      <PropertyRef Name="userID" />
+    </Key>
+    <Property Name="userID" Type="Int32" Nullable="false" />
+    <Property Name="firstName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="lastName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="orders" Relationship="Self.FK_order_user" FromRole="user" ToRole="order" />
+  </EntityType>
+  <Association Name="FK_order_user">
+    <End Role="user" Type="Self.user" Multiplicity="1" />
+    <End Role="order" Type="Self.order" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="user">
+        <PropertyRef Name="userID" />
+      </Principal>
+      <Dependent Role="order">
+        <PropertyRef Name="userID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="ShipbobEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="orders" EntityType="Self.order" />
+    <EntitySet Name="users" EntityType="Self.user" />
+    <AssociationSet Name="FK_order_user" Association="Self.FK_order_user">
+      <End Role="user" EntitySet="users" />
+      <End Role="order" EntitySet="orders" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

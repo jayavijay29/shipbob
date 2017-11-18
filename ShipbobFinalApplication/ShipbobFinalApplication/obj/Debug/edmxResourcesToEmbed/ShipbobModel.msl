@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ShipbobModelStoreContainer" CdmEntityContainer="ShipbobEntities">
+    <EntitySetMapping Name="orders">
+      <EntityTypeMapping TypeName="ShipbobModel.order">
+        <MappingFragment StoreEntitySet="order">
+          <ScalarProperty Name="userID" ColumnName="userID" />
+          <ScalarProperty Name="trackingID" ColumnName="trackingID" />
+          <ScalarProperty Name="orderID" ColumnName="orderID" />
+          <ScalarProperty Name="street" ColumnName="street" />
+          <ScalarProperty Name="state" ColumnName="state" />
+          <ScalarProperty Name="zipCode" ColumnName="zipCode" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="users">
+      <EntityTypeMapping TypeName="ShipbobModel.user">
+        <MappingFragment StoreEntitySet="user">
+          <ScalarProperty Name="userID" ColumnName="userID" />
+          <ScalarProperty Name="firstName" ColumnName="firstName" />
+          <ScalarProperty Name="lastName" ColumnName="lastName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

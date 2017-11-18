@@ -1,0 +1,56 @@
+﻿
+<div class="col-md-8">
+    <div class="tim-container" style="min-height: 2000px;">
+        <div class="tim-row" id="inputs-row">
+            <h4>Create User</h4>
+            <legend style="background:#424949;"></legend>
+            <div class="row">
+                <ng-form name="myForm1">
+                    <div class="col-md-6">
+                        <input type="text" ng-model="Prefix1" value="" placeholder="First Name" class="form-control" required /><br>
+                        <input type="text" ng-model="Prefix2" value="" placeholder="Last Name" class="form-control" required /><br>
+                        <button ng-disabled="myForm1.$invalid" value="Create" class="btn btn-info" ng-click="Create()">Create</button>
+                    </div>
+                </ng-form>
+            </div>
+        </div>
+
+        <!-- end row -->
+        <!-- buttons row -->
+        <div class="tim-row" id="buttons-row">
+            <h4>Current Users</h4>
+            <div class="table-responsive">
+                <table class="table" ng-show="IsVisible">
+                    <thead>
+                        <tr>
+                            <th class="text-center"><b>UserID</b></th>
+                            <th class="text-center"><b>First Name</b></th>
+                            <th class="text-center"><b>Last Name</b></th>
+                            <th class="text-center"><b>Actions</b></th>
+                        </tr>
+                    </thead>
+                    <tbody dir-paginate="m in user|itemsPerPage:3">
+                        <tr>
+                            <td align="center">{{m.userID}}</td>
+                            <td align="center">{{m.firstName}}</td>
+                            <td align="center">{{m.lastName}}</td>
+                            <td align="center">
+                                <p>
+                                    <a class="btn btn-info" ng-href="#red/{{m.userID}}"><b>Create Order</b></a>
+                                    <a class="btn btn-success" ng-href="#viewOrderUser/{{m.userID}}"><b>View Order</b></a>
+                                </p>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <dir-pagination-controls max-size="5"
+                                         direction-links="true"
+                                         boundary-links="true">
+                </dir-pagination-controls>
+
+            </div>
+        </div>
+        <!-- end row -->
+        <!-- end container -->
+    </div>
+</div>

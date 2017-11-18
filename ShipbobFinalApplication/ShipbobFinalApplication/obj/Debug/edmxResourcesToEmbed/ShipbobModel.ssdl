@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ShipbobModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="order">
+    <Key>
+      <PropertyRef Name="trackingID" />
+    </Key>
+    <Property Name="userID" Type="int" Nullable="false" />
+    <Property Name="trackingID" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="orderID" Type="int" Nullable="false" />
+    <Property Name="street" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="state" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="zipCode" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="user">
+    <Key>
+      <PropertyRef Name="userID" />
+    </Key>
+    <Property Name="userID" Type="int" Nullable="false" />
+    <Property Name="firstName" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="lastName" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_order_user">
+    <End Role="user" Type="Self.user" Multiplicity="1" />
+    <End Role="order" Type="Self.order" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="user">
+        <PropertyRef Name="userID" />
+      </Principal>
+      <Dependent Role="order">
+        <PropertyRef Name="userID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="ShipbobModelStoreContainer">
+    <EntitySet Name="order" EntityType="Self.order" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="user" EntityType="Self.user" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_order_user" Association="Self.FK_order_user">
+      <End Role="user" EntitySet="user" />
+      <End Role="order" EntitySet="order" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

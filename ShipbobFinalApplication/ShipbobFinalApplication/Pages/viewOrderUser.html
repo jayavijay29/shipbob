@@ -1,0 +1,39 @@
+﻿<div class="col-md-8">
+    <div class="tim-container" style="width:900px; min-height: 2000px;">
+        <div class="tim-row" id="buttons-row">
+            <h4>Orders - User</h4>
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th class="text-center"><b>User ID</b></th>
+                            <th class="text-center"><b>Tracking ID</b></th>
+                            <th class="text-center"><b>Order ID</b></th>
+                            <th class="text-center"><b>Street</b></th>
+                            <th class="text-center"><b>State</b></th>
+                            <th class="text-center"><b>Zipcode</b></th>
+                            <th class="text-center"><b>Action</b></th>
+                        </tr>
+                    </thead>
+                    
+                    <tbody ng-repeat="m in order">
+                        <tr>
+                            <td align="center">{{m.userID}}</td>
+                            <td align="center">{{m.trackingID}}</td>
+                            <td align="center">{{m.orderID}}</td>
+                            <td align="center">{{m.street}}</td>
+                            <td align="center">{{m.state}}</td>
+                            <td align="center">{{m.zipCode}}</td>
+                            <td align="center">
+                                <p>
+                                    <a class="btn btn-warning" ng-href="#editOrder/{{m.trackingID}}"><b>Edit Order</b></a>
+                                    <a class="btn btn-danger" ng-href="#deleteOrder/{{m.trackingID}}"><b>Delete Order</b></a>
+                                </p>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

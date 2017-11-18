@@ -1,0 +1,48 @@
+﻿<div class="col-md-8">
+    <div class="tim-container" style="min-height: 2000px;">
+        <div class="tim-row" id="inputs-row">
+            <h4>Edit Order</h4>
+            <legend color="#424949"></legend>
+            <div class="row">
+                <ng-form name="myForm">
+                    <div class="col-md-6">
+                        <input name="trackingID" type="text" ng-model="Prefix11" value="" placeholder="Tracking No." class="form-control" required ng-click="showme1=true" />
+                        <div role="alert" ng-show="showme1">
+                            <span class="error" ng-show="myForm.trackingID.$error.required">
+                                Tracking ID is Empty!
+                            </span>
+                        </div><br>
+                        <input  name="orderID" type="number" ng-model="Prefix22" value="" placeholder="Order No." class="form-control" required ng-click="showme2=true"/>
+                        <div role="alert" ng-show="showme2">
+                            <span class="error" ng-show="myForm.orderID.$error.required">
+                                Order ID is Empty!
+                            </span>
+                        </div><br>
+                        <input name="address" type="text" ng-model="Prefix33" value="" placeholder="Address" class="form-control" required ng-click="showme3=true"/>
+                        <div role="alert" ng-show="showme3">
+                            <span class="error" ng-show="myForm.address.$error.required">
+                                Address is Empty!
+                            </span>
+                        </div><br>
+                        <input name="state" type="text" ng-model="Prefix44" value="" placeholder="State" class="form-control" required ng-click="showme4=true"/>
+                        <div role="alert" ng-show="showme4">
+                            <span class="error" ng-show="myForm.state.$error.required">
+                                State is Empty!
+                            </span>
+                        </div><br>
+                        <input name="zipCode" type="number" ng-model="Prefix55" value="" placeholder="Zipcode" class="form-control" required ng-minlength="5" ng-maxlength="5" />
+                        <div role="alert">
+                            <span class="error" ng-show="myForm.zipCode.$error.minlength">
+                                ZIPCODE must be 5 numbers!
+                            </span>
+                            <span class="error" ng-show="myForm.zipCode.$error.maxlength">
+                                ZIPCODE must not be more than 5 numbers!
+                            </span>
+                        </div><br>
+                        <button value="CreateOrder" class="btn btn-info" ng-disabled="myForm.$invalid" ng-click="CreateOrder()">Submit</button>
+                    </div>
+                </ng-form>
+            </div>
+        </div>
+    </div>
+</div>
